@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.com.fiap.28scj</groupId>
-	<artifactId>SmartRH</artifactId>
+	<artifactId>Devops1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>SmartRH</name>
+	<name>Devops1</name>
 	<description></description>
 
 	<parent>
@@ -45,7 +45,6 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
