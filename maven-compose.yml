@@ -1,0 +1,18 @@
+version: '3'
+services:
+    maven1:
+        image: maven:latest
+        container_name: cmaven1
+        volumes:
+            - .:/usr/src/output
+            - ./Devops1:/usr/src/mymaven
+        working_dir: /usr/src/mymaven
+        entrypoint: "mvn package -Dmaven.test.skip=true"
+    maven2:
+        image: maven:latest
+        container_name: cmaven2
+        volumes:
+            - .:/usr/src/output
+            - ./Devops2:/usr/src/mymaven
+        working_dir: /usr/src/mymaven
+        entrypoint: "mvn package -Dmaven.test.skip=true"

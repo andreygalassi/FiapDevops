@@ -1,5 +1,26 @@
 version: '3'
 services:
+    # maven1:
+    #     image: maven:latest
+    #     container_name: cmaven1
+    #     networks: 
+    #         - minha-rede
+    #     volumes:
+    #         - .:/usr/src/output
+    #         - ./Devops1:/usr/src/mymaven
+    #     working_dir: /usr/src/mymaven
+    #     entrypoint: "mvn package -Dmaven.test.skip=true"
+    # maven2:
+    #     image: maven:latest
+    #     container_name: cmaven2
+    #     networks: 
+    #         - minha-rede
+    #     volumes:
+    #         - .:/usr/src/output
+    #         - ./Devops2:/usr/src/mymaven
+    #     working_dir: /usr/src/mymaven
+    #     entrypoint: "mvn package -Dmaven.test.skip=true"
+
     mysql:
         image: mysql:latest
         container_name: cmysql
@@ -16,19 +37,44 @@ services:
         container_name: cdevops1
         ports:
             - "8081:8080"
+            - "3306"
         networks: 
             - minha-rede
         depends_on:
             - "mysql"
+#            - "maven1"
         volumes:
-            - ./Devops1/target:/usr/src/app
+            - .:/usr/src/app
         environment:
             - DATABASE_HOST=mysql
             - DATABASE_PORT=3306
             - DATABASE_USER=root
             - DATABASE_PASS=12345
+            - DATABASE_SCHEMA=devops
         working_dir: /usr/src/app
-        entrypoint: "java -jar Devops1-0.0.2-SNAPSHOT.jar Application"
+        entrypoint: "java -jar Devops1.jar Application"
+
+    devops2:
+        image: openjdk:8
+        container_name: cdevops2
+        ports:
+            - "8082:8080"
+            - "3306"
+        networks: 
+            - minha-rede
+        depends_on:
+            - "mysql"
+#            - "maven2"
+        volumes:
+            - .:/usr/src/app
+        environment:
+            - DATABASE_HOST=mysql
+            - DATABASE_PORT=3306
+            - DATABASE_USER=root
+            - DATABASE_PASS=12345
+            - DATABASE_SCHEMA=devops
+        working_dir: /usr/src/app
+        entrypoint: "java -jar Devops2.jar Application"
 
 networks: 
     minha-rede:
