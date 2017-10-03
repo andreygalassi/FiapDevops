@@ -1,5 +1,18 @@
 # FiapDevops
 
+baixar com o git
+git clone
+
+compilar com maven
+docker-compose -f maven-compose.yml up
+
+rodar
+docker-compose -f docker-compose.yml up
+
+
+
+
+----------
 docker run -it --rm --name my-maven-project -v "$PWD":/usr/src/mymaven -w /usr/src/mymaven maven mvn package -Dmaven.test.skip=true
 
 docker network create --driver bridge minha-rede
